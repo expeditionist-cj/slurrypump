@@ -53,12 +53,12 @@ module.exports = {
           '^/admin': '/admin'
         }
       },
-      // 数据标准化配置管理
-      '/data': {
+      // 供浆模型
+      '/pump': {
         target: settings.proxyUrl,
         ws: true,
         pathRewrite: {
-          '^/data': '/data'
+          '^/pump': '/pump'
         }
       }
     }

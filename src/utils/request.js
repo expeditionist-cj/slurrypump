@@ -1,7 +1,7 @@
 
 import axios from 'axios'
 // 创建axios实例
-const proUrl = '/assistant'
+const proUrl = '/api'
 const devUrl = '/'
 const service = axios.create({
   baseURL: process.env.NODE_ENV === 'production' ? proUrl : devUrl,
@@ -10,6 +10,7 @@ const service = axios.create({
       'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
     },
     post: {
+      // 默认传递的参数是json格式，可通过传参修改
       'Content-Type': 'application/json;charset=utf-8'
     },
     // 跨域请求时是否需要使用凭证
@@ -22,10 +23,9 @@ const service = axios.create({
     return true
   },
   // 在向服务器发送请求前，序列化请求数据
-  transformRequest: [function (data) {
-    data = JSON.stringify(data)
-    return data
-  }],
+  // transformRequest: [function (data) {
+  //   return data
+  // }],
   // 在传递给 then/catch 前，修改响应数据
   transformResponse: [function (data) {
     if (typeof data === 'string' && data.startsWith('{')) {
